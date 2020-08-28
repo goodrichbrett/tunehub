@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tunehub</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css"
+			integrity="sha512-t38vG/f94E72wz6pCsuuhcOPJlHKwPy+PY+n1+tJFzdte3hsIgYE7iEpgg/StngunGszVMrRfvwZinrza0vMTA=="
+			crossorigin="anonymous"
+		/>
+		<link
+			href="https://fonts.googleapis.com/icon?family=Material+Icons"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+	</head>
+	<body>
+        <nav>
+            <div class="nav-wrapper">
+              <a href="" class="brand-logo">Tunehub</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+					><i class="material-icons">dehaze</i></a
+				>
+              <ul class="right hide-on-med-and-down">
+                <li>
+                <% if (user) { %>
+                  <a href="/auth/logout">Log Out</a>
+                <% } else { %>
+                  <a href="/auth/google">Login with Google</a>
+                <% } %>
+                </li>
+              </ul>
+            </div>
+          </nav>

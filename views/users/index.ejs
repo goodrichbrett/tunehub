@@ -1,0 +1,10 @@
+  <%- include('../partials/header.ejs')  %>
+  
+  </div>
+  <ul>Registered Users:
+    <% users.forEach(u => { %>
+      <li><%= u.name %></li>
+    <% }) %>
+  </ul>
+
+  <%- include('../partials/footer.ejs') %>
