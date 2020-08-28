@@ -1,15 +1,31 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 .brand-logo {
 	margin-left: 15px;
 }
 
-/* .card .card-content .card-title {
-	margin-bottom: 10px;
-} */
-
-/* #search-row form {
-	padding-top: 20px;
-} */
-
 nav {
 	background-color: #0091ea;
+	margin-top: 0;
+}
+
+.card {
+	text-align: center;
+	max-width: 400px;
+}
+
+.card {
+	margin: 20px auto 30px auto;
+}
+
+.card-image > img {
+	max-width: 400px;
+	max-height: 350px;
+	overflow: hidden;
+	background-size: cover;
+	background-repeat: no-repeat;
 }

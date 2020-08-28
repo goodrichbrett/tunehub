@@ -19,16 +19,17 @@
 	</head>
 	<body>
 		<nav>
-            <div class="nav-wrapper">
-                <a href="/songs" class="brand-logo">Tunehub</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <% if (user) { %>
-                    <li><a href="/songs/new">Add Song</a></li>
-                    <li><a href="/auth/logout">Log Out</a></li>
-                    <% } else { %>
-                    <a href="/auth/google">Login with Google</a>
-                    <% } %>
-                </ul>
-            </div>
-        </nav>
-        
+			<div class="nav-wrapper">
+				<a href="/songs" class="brand-logo">Tunehub</a>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<% if (user) { %>
+					<li><a href="/songs/new">Add Song</a></li>
+					<li><a href="/auth/logout">Log Out</a></li>
+					<% } else { %>
+					<a href="/auth/google">Login with Google</a>
+					<% } %>
+				</ul>
+			</div>
+		</nav>
+	</body>
+</html>

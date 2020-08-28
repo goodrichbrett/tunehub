@@ -4,7 +4,7 @@
 
 <form action="/songs/search" method="POST">
 	<div class="row">
-		<div class="input-field col s2">
+		<div class="input-field col s6">
 			<label>Artist Name</label>
 			<input
 				type="text"
@@ -16,17 +16,14 @@
 		</div>
 	</div>
 </form>
-
-<% if (results){ %> <% results.forEach(song => { %>
 <div class="row">
-	<div class="col s12 m7">
-		<div class="card">
+	<% if (results){ %> <% results.forEach(song => { %>
+	<div class="col s12 m12 l6 xl3">
+		<div class="card large">
 			<div class="card-image">
 				<img src="<%= song.artworkUrl100 %> " />
-				<span style="color: #0091ea" class="card-title">
-					<%= song.trackName %>
-				</span>
 			</div>
+			<span class="card-title"> <%= song.trackName %> </span>
 			<div class="card-content">
 				<ul>
 					<li><%= song.artistName %></li>
@@ -38,5 +35,6 @@
 			</div>
 		</div>
 	</div>
+	<% })} %>
 </div>
-<% }) %> <% } %> <%- include('../partials/footer.ejs') %>
+<%- include('../partials/footer.ejs') %>
