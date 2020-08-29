@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-<h2>new page</h2>
+<h2>Find by Artist Name</h2>
 
 <form action="/songs/search" method="POST">
 	<div class="row">
@@ -31,7 +31,7 @@
 				</ul>
 			</div>
 			<div class="card-action">
-				<a href="#">This is a link</a>
+				<a href="/songs/<%= song.slug %> ">More Details</a>
 			</div>
 		</div>
 	</div>

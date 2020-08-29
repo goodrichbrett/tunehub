@@ -17,7 +17,7 @@ function index(req, res) {
 function search(req, res) {
 	axios
 		.get(
-			`https://itunes.apple.com/search?term=${req.body.artistQuery}&entity=allTrack&attribute=allTrackTerm`
+			`https://itunes.apple.com/search?term=${req.body.artistQuery}&entity=allTrack&attribute=allTrackTerm&limit=100`
 		)
 		.then((response) => {
 			console.log(response.data.results);
@@ -40,7 +40,7 @@ function newSong(req, res) {
 
 function show(req, res) {
 	axios
-		.get(`https://itunes.apple.com/search?term=${req.body.slug}`)
+		.get(`https://itunes.apple.com/search?term=${req.params.slug}`)
 		.then((response) => {
 			Song.findOne({ slug: response.data.slug })
 				.populate('ownedBy')
