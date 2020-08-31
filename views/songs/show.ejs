@@ -8,7 +8,13 @@
 		<h4><%= song.results[0].artistName %></h4>
 		<h4><%= song.results[0].trackExplicitness %></h4>
 		<h5>Owned By:</h5>
-		<p>placeholder person</p>
+		<ul>
+			<% ownedBy.forEach(user => { %>
+			<li>
+				<img id="userAvatar" src="<%= user.avatar %>" /> <%=user.name %>
+			</li>
+			<% }) %>
+		</ul>
 	</div>
 	<div id="column">
 		<form

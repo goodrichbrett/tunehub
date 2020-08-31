@@ -45,4 +45,7 @@ nav {
 
 #userAvatar {
 	border-radius: 50%;
+	display: inline;
+	margin: 15px 0 0 0;
+	width: 50px;
 }

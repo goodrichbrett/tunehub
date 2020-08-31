@@ -48,12 +48,17 @@ function show(req, res) {
 		.get(`https://itunes.apple.com/search?term=${req.params.trackId}`)
 		.then((response) => {
 			console.log(response.data);
-			res.render('songs/show', {
-				user: req.user,
-				song: response.data,
-				researchName: req.body.artistQuery,
-				songId: response.data._id,
-			});
+			Song.findOne({ trackId: response.data.trackId })
+				.populate('ownedBy')
+				.then((song) => {
+					res.render('songs/show', {
+						user: req.user,
+						song: response.data,
+						researchName: req.body.artistQuery,
+						songId: response.data._id,
+						ownedBy: song.ownedBy,
+					});
+				});
 		})
 		.catch((error) => {
 			console.log(error);
@@ -61,9 +66,10 @@ function show(req, res) {
 }
 
 function addToOwned(req, res) {
-	req.body.ownedBy = req.params.id;
+	req.body.ownedBy = req.user._id;
 	Song.findOne({ trackId: req.body.trackId }).then((err, song) => {
 		if (song) {
+			console.log(req.user._id);
 			song.ownedBy.push(req.user._id);
 			song.save().then((err) => {
 				res.redirect(`/songs/${req.params.trackId}`);

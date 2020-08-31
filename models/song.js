@@ -8,7 +8,7 @@ const songSchema = new Schema(
 		artistName: String,
 		explicit: String,
 		artwork: String,
-		ownedBy: String,
+		ownedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 	},
 	{
 		timestamps: true,

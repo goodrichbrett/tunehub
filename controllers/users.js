@@ -16,9 +16,11 @@ function showProfile(req, res) {
 	console.log(req.user);
 	User.findById(req.params.id)
 		.then((userInfo) => {
-			res.render('users/profile', {
-				user: req.user,
-				userInfo,
+			Song.find({ ownedBy: userInfo._id }).then((songs) => {
+				res.render('users/profile', {
+					user: req.user,
+					userInfo,
+				});
 			});
 		})
 		.catch((error) => {
