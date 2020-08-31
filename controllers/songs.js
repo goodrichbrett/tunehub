@@ -43,21 +43,32 @@ function newSong(req, res) {
 }
 
 function show(req, res) {
-	console.log(req.body);
+	// console.log(req.body);
 	axios
 		.get(`https://itunes.apple.com/search?term=${req.params.trackId}`)
 		.then((response) => {
-			console.log(response.data);
+			// console.log(response.data);
 			Song.findOne({ trackId: response.data.trackId })
 				.populate('ownedBy')
 				.then((song) => {
-					res.render('songs/show', {
-						user: req.user,
-						song: response.data,
-						researchName: req.body.artistQuery,
-						songId: response.data._id,
-						ownedBy: song.ownedBy,
-					});
+					if (song) {
+						res.render('songs/show', {
+							user: req.user,
+							song: response.data,
+							researchName: req.body.artistQuery,
+							songId: response.data._id,
+							ownedBy: song.ownedBy,
+						});
+					} else {
+						res.render('songs/show', {
+							user: req.user,
+							song: response.data,
+							researchName: req.body.artistQuery,
+							songId: response.data._id,
+							ownedBy: [''],
+							trackId: response.data.trackId,
+						});
+					}
 				});
 		})
 		.catch((error) => {
@@ -66,10 +77,15 @@ function show(req, res) {
 }
 
 function addToOwned(req, res) {
+	console.log('body' + req.body);
 	req.body.ownedBy = req.user._id;
-	Song.findOne({ trackId: req.body.trackId }).then((err, song) => {
+	console.log('REQ.BODY.OWNEDBY\n' + req.body.ownedBy);
+	console.log('REQ.PARAMS.TRACKID\n' + req.params.trackId);
+	console.log('REQ.BODY.TRACKID\n' + req.body.trackId);
+	Song.findOne({ trackId: req.params.trackId }).then((song, err) => {
+		console.log('REQ.USER.ID\n' + req.user._id);
+		console.log('song\n' + song);
 		if (song) {
-			console.log(req.user._id);
 			song.ownedBy.push(req.user._id);
 			song.save().then((err) => {
 				res.redirect(`/songs/${req.params.trackId}`);

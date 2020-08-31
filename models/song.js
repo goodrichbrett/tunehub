@@ -9,6 +9,7 @@ const songSchema = new Schema(
 		explicit: String,
 		artwork: String,
 		ownedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+		trackId: Number,
 	},
 	{
 		timestamps: true,

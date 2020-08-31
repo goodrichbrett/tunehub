@@ -2,17 +2,15 @@
 
 <div id="row">
 	<div id="column">
-		<img id="showImg" src="<%= song.results[0].artworkUrl100%> " alt="" />
+		<img id="showImg" src="<%= song.results[0].artworkUrl100 %> " alt="" />
 		<h3><%= song.results[0].trackName %></h3>
 		<h4><%= song.results[0].collectionName %></h4>
 		<h4><%= song.results[0].artistName %></h4>
 		<h4><%= song.results[0].trackExplicitness %></h4>
 		<h5>Owned By:</h5>
 		<ul>
-			<% ownedBy.forEach(user => { %>
-			<li>
-				<img id="userAvatar" src="<%= user.avatar %>" /> <%=user.name %>
-			</li>
+			<% ownedBy.forEach(u => { %>
+			<li><img id="userAvatar" src="<%= u.avatar %>" /> <%=u.name %></li>
 			<% }) %>
 		</ul>
 	</div>
@@ -21,6 +19,49 @@
 			action="/songs/<%= song.results[0].trackId %>/owned"
 			method="POST"
 		>
+			<input
+				type="text"
+				hidden
+				name="trackName"
+				value="<%= song.results[0].trackName %>"
+			/>
+			<input
+				type="text"
+				hidden
+				name="collectionName"
+				value="<%= song.results[0].collectionName %>"
+			/>
+			<input
+				type="text"
+				hidden
+				name="artistName"
+				value="<%= song.results[0].artistName %>"
+			/>
+			<input type="text" hidden name="videoUrl" value="" />
+			<input
+				type="text"
+				hidden
+				name="trackExplicitness"
+				value="<%= song.results[0].trackExplicitness %>"
+			/>
+			<input
+				type="text"
+				hidden
+				name="artwork"
+				value="<%= song.results[0].artworkUrl100 %>"
+			/>
+			<input
+				type="text"
+				hidden
+				name="trackId"
+				value="<%= song.results[0].trackId %>"
+			/>
+			<input
+				type="text"
+				hidden
+				name="ownedBy"
+				value="<%= song.results[0].ownedBy %>"
+			/>
 			<button type="submit">Add to Own List</button>
 		</form>
 		<h3>Average Rating</h3>
