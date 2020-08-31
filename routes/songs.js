@@ -4,7 +4,7 @@ const songsCtrl = require('../controllers/songs');
 router.get('/', isLoggedIn, songsCtrl.index);
 router.post('/search', songsCtrl.search);
 router.get('/new', songsCtrl.newSong);
-router.get('/:slug', isLoggedIn, songsCtrl.show);
+router.get('/:id', isLoggedIn, songsCtrl.show);
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) return next();

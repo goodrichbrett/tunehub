@@ -8,9 +8,18 @@ module.exports = {
 	show,
 };
 
+// function index(req, res) {
+// 	res.render('songs/index', {
+// 		user: req.user,
+// 	});
+// }
+
 function index(req, res) {
-	res.render('songs/index', {
-		user: req.user,
+	Song.find({ ownedBy: req.user._id }).then((songs) => {
+		res.render('songs/index', {
+			user: req.user,
+			songs,
+		});
 	});
 }
 
@@ -38,29 +47,47 @@ function newSong(req, res) {
 	});
 }
 
+// function show(req, res) {
+// 	axios
+// 		.get(`https://itunes.apple.com/search?term=${req.params.slug}`)
+// 		.then((response) => {
+// 			Song.findOne({ slug: response.data.slug })
+// 				.populate('ownedBy')
+// 				.then((song) => {
+// 					if (song) {
+// 						res.render('songs/show', {
+// 							user: req.user,
+// 							ownedBy: song.ownedBy,
+// 							song: response.data,
+// 							songId: song._id,
+// 							reviews: song.reviews,
+// 						});
+// 					} else {
+// 						res.render('songs/show', {
+// 							user: req.user,
+// 							song: response.data,
+// 							ownedBy: [''],
+// 							reviews: [''],
+// 						});
+// 					}
+// 				});
+// 		});
+// }
+
 function show(req, res) {
 	axios
-		.get(`https://itunes.apple.com/search?term=${req.params.slug}`)
+		.get(
+			`https://itunes.apple.com/search?term=${req.body.trackName}&entity=allTrack&attribute=allTrackTerm&limit=100`
+		)
 		.then((response) => {
-			Song.findOne({ slug: response.data.slug })
-				.populate('ownedBy')
-				.then((song) => {
-					if (song) {
-						res.render('songs/show', {
-							user: req.user,
-							ownedBy: song.ownedBy,
-							song: response.data,
-							songId: song._id,
-							reviews: song.reviews,
-						});
-					} else {
-						res.render('songs/show', {
-							user: req.user,
-							song: response.data,
-							ownedBy: [''],
-							reviews: [''],
-						});
-					}
-				});
+			console.log(response.data);
+			res.render('songs/show', {
+				user: req.user,
+				song: response.data,
+				researchName: req.body.artistQuery,
+			});
+		})
+		.catch((error) => {
+			console.log(error);
 		});
 }
