@@ -1,10 +1,26 @@
 <%- include('../partials/header.ejs') %>
 
-<h1>Show Page</h1>
-<hr />
-
-<h3>Song: <%= song.results[0].trackName %></h3>
-<h3>Artist: <%= song.results[0].artistName %></h3>
-<h3>View: <%= song.results[0].trackViewUrl %></h3>
+<div id="row">
+	<div id="column">
+		<img id="showImg" src="<%= song.results[0].artworkUrl100%> " alt="" />
+		<h3><%= song.results[0].trackName %></h3>
+		<h4><%= song.results[0].collectionName %></h4>
+		<h4><%= song.results[0].artistName %></h4>
+		<h4><%= song.results[0].trackExplicitness %></h4>
+		<h5>Owned By:</h5>
+		<p>placeholder person</p>
+	</div>
+	<div id="column">
+		<form
+			action="/songs/<%= song.results[0].trackId %>/owned"
+			method="POST"
+		>
+			<button type="submit">Add to Own List</button>
+		</form>
+		<h3>Average Rating</h3>
+		<p>fake 5 star icons</p>
+		<h4>Reviews</h4>
+	</div>
+</div>
 
 <%- include('../partials/footer.ejs') %>

@@ -6,6 +6,7 @@ module.exports = {
 	search,
 	newSong,
 	show,
+	addToOwned,
 };
 
 function index(req, res) {
@@ -57,4 +58,20 @@ function show(req, res) {
 		.catch((error) => {
 			console.log(error);
 		});
+}
+
+function addToOwned(req, res) {
+	req.body.ownedBy = req.params.id;
+	Song.findOne({ trackId: req.body.trackId }).then((err, song) => {
+		if (song) {
+			song.ownedBy.push(req.user._id);
+			song.save().then((err) => {
+				res.redirect(`/songs/${req.params.trackId}`);
+			});
+		} else {
+			Song.create(req.body).then((err) => {
+				res.redirect(`/songs/${req.params.trackId}`);
+			});
+		}
+	});
 }
