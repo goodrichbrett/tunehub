@@ -8,12 +8,6 @@ module.exports = {
 	show,
 };
 
-// function index(req, res) {
-// 	res.render('songs/index', {
-// 		user: req.user,
-// 	});
-// }
-
 function index(req, res) {
 	Song.find({ ownedBy: req.user._id }).then((songs) => {
 		res.render('songs/index', {
@@ -29,7 +23,7 @@ function search(req, res) {
 			`https://itunes.apple.com/search?term=${req.body.artistQuery}&entity=allTrack&attribute=allTrackTerm&limit=100`
 		)
 		.then((response) => {
-			console.log(response.data.results);
+			// console.log(response.data.results);
 			res.render('songs/new', {
 				user: req.user ? req.user : null,
 				results: response.data.results,
@@ -47,44 +41,17 @@ function newSong(req, res) {
 	});
 }
 
-// function show(req, res) {
-// 	axios
-// 		.get(`https://itunes.apple.com/search?term=${req.params.slug}`)
-// 		.then((response) => {
-// 			Song.findOne({ slug: response.data.slug })
-// 				.populate('ownedBy')
-// 				.then((song) => {
-// 					if (song) {
-// 						res.render('songs/show', {
-// 							user: req.user,
-// 							ownedBy: song.ownedBy,
-// 							song: response.data,
-// 							songId: song._id,
-// 							reviews: song.reviews,
-// 						});
-// 					} else {
-// 						res.render('songs/show', {
-// 							user: req.user,
-// 							song: response.data,
-// 							ownedBy: [''],
-// 							reviews: [''],
-// 						});
-// 					}
-// 				});
-// 		});
-// }
-
 function show(req, res) {
+	console.log(req.body);
 	axios
-		.get(
-			`https://itunes.apple.com/search?term=${req.body.trackName}&entity=allTrack&attribute=allTrackTerm&limit=100`
-		)
+		.get(`https://itunes.apple.com/search?term=${req.params.trackId}`)
 		.then((response) => {
 			console.log(response.data);
 			res.render('songs/show', {
 				user: req.user,
 				song: response.data,
 				researchName: req.body.artistQuery,
+				songId: response.data._id,
 			});
 		})
 		.catch((error) => {

@@ -1,1 +1,10 @@
-<h2>show page</h2>
+<%- include('../partials/header.ejs') %>
+
+<h1>Show Page</h1>
+<hr />
+
+<h3>Song: <%= song.results[0].trackName %></h3>
+<h3>Artist: <%= song.results[0].artistName %></h3>
+<h3>View: <%= song.results[0].trackViewUrl %></h3>
+
+<%- include('../partials/footer.ejs') %>
