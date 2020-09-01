@@ -68,5 +68,8 @@ nav {
 
 textarea {
 	width: 50%;
-	display: inline;
+}
+
+#inputBtn {
+	width: 50%;
 }
