@@ -56,8 +56,9 @@ function show(req, res) {
 							user: req.user,
 							song: response.data,
 							researchName: req.body.artistQuery,
-							songId: response.data._id,
+							trackId: response.data._id,
 							ownedBy: song.ownedBy,
+							reviews: song.reviews,
 						});
 					} else {
 						res.render('songs/show', {
@@ -65,8 +66,9 @@ function show(req, res) {
 							song: response.data,
 							researchName: req.body.artistQuery,
 							songId: response.data._id,
-							ownedBy: [req.user],
 							trackId: response.data.trackId,
+							ownedBy: [''],
+							reviews: [''],
 						});
 					}
 				});

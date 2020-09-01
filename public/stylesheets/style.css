@@ -65,3 +65,8 @@ nav {
 	display: inline;
 	margin-top: 0;
 }
+
+textarea {
+	width: 50%;
+	display: inline;
+}

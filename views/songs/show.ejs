@@ -10,10 +10,7 @@
 		<h5>Owned By:</h5>
 		<ul>
 			<% ownedBy.forEach(user => { %>
-			<li>
-				<img id="userAvatar1" src="<%= user.avatar %>" />
-				<p id="userName"><%=user.name %></p>
-			</li>
+			<li><img src="<%= user.avatar %> " alt="" /> <%= user.name %></li>
 			<% }) %>
 		</ul>
 	</div>
@@ -70,6 +67,10 @@
 		<h3>Average Rating</h3>
 		<p>fake 5 star icons</p>
 		<h4>Reviews</h4>
+		<form action="/songs/<%= trackId %>/reviews" method="POST">
+			<textarea name="review" cols="10"></textarea>
+			<button id="textareaBtn" type="submit">Submit Review</button>
+		</form>
 	</div>
 </div>
 
