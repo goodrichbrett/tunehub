@@ -79,12 +79,7 @@ function show(req, res) {
 function addToOwned(req, res) {
 	console.log('body' + req.body);
 	req.body.ownedBy = req.user._id;
-	console.log('REQ.BODY.OWNEDBY\n' + req.body.ownedBy);
-	console.log('REQ.PARAMS.TRACKID\n' + req.params.trackId);
-	console.log('REQ.BODY.TRACKID\n' + req.body.trackId);
 	Song.findOne({ trackId: req.params.trackId }).then((song, err) => {
-		console.log('REQ.USER.ID\n' + req.user._id);
-		console.log('song\n' + song);
 		if (song) {
 			song.ownedBy.push(req.user._id);
 			song.save().then((err) => {

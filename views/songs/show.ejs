@@ -9,8 +9,12 @@
 		<h4><%= song.results[0].trackExplicitness %></h4>
 		<h5>Owned By:</h5>
 		<ul>
-			<% ownedBy.forEach(u => { %>
-			<li><img id="userAvatar" src="<%= u.avatar %>" /> <%=u.name %></li>
+			<% ownedBy.forEach(user => { %>
+			<h3><%= user.name %></h3>
+			<li>
+				<img src="<%= user.avatar %>" />
+				<p><%=user %></p>
+			</li>
 			<% }) %>
 		</ul>
 	</div>

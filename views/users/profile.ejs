@@ -29,4 +29,12 @@
 	</div>
 </div>
 
+<div>
+	<ul>
+		<% songs.forEach(song => { %>
+		<li><p><%= song.trackName %></p></li>
+		<% }) %>
+	</ul>
+</div>
+
 <%-include('../partials/footer.ejs') %>

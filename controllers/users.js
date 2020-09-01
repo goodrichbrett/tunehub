@@ -13,13 +13,15 @@ function index(req, res) {
 }
 
 function showProfile(req, res) {
-	console.log(req.user);
-	User.findById(req.params.id)
+	console.log('user\n' + req.user);
+	User.findById(req.user._id)
 		.then((userInfo) => {
+			console.log(userInfo);
 			Song.find({ ownedBy: userInfo._id }).then((songs) => {
 				res.render('users/profile', {
 					user: req.user,
 					userInfo,
+					songs,
 				});
 			});
 		})
