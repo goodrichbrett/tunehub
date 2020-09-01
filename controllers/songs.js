@@ -65,7 +65,7 @@ function show(req, res) {
 							song: response.data,
 							researchName: req.body.artistQuery,
 							songId: response.data._id,
-							ownedBy: [''],
+							ownedBy: [req.user],
 							trackId: response.data.trackId,
 						});
 					}

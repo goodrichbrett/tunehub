@@ -10,10 +10,9 @@
 		<h5>Owned By:</h5>
 		<ul>
 			<% ownedBy.forEach(user => { %>
-			<h3><%= user.name %></h3>
 			<li>
-				<img src="<%= user.avatar %>" />
-				<p><%=user %></p>
+				<img id="userAvatar1" src="<%= user.avatar %>" />
+				<p id="userName"><%=user.name %></p>
 			</li>
 			<% }) %>
 		</ul>

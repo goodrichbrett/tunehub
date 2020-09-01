@@ -49,3 +49,19 @@ nav {
 	margin: 15px 0 0 0;
 	width: 50px;
 }
+
+.li {
+	margin-top: 10px;
+}
+
+#userAvatar1 {
+	border-radius: 50%;
+	display: inline;
+	margin-top: 15px;
+	width: 50px;
+}
+
+#userName {
+	display: inline;
+	margin-top: 0;
+}
