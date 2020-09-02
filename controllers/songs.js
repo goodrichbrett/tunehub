@@ -58,7 +58,7 @@ function show(req, res) {
 							researchName: req.body.artistQuery,
 							trackId: response.data._id,
 							ownedBy: song.ownedBy,
-							reviews: song.reviews,
+							// reviews: song.reviews,
 						});
 					} else {
 						res.render('songs/show', {
@@ -68,7 +68,7 @@ function show(req, res) {
 							songId: response.data._id,
 							trackId: response.data.trackId,
 							ownedBy: [''],
-							reviews: [''],
+							// reviews: [''],
 						});
 					}
 				});
@@ -79,18 +79,30 @@ function show(req, res) {
 }
 
 function addToOwned(req, res) {
-	console.log('body' + req.body);
-	req.body.ownedBy = req.user._id;
-	Song.findOne({ trackId: req.params.trackId }).then((song, err) => {
-		if (song) {
-			song.ownedBy.push(req.user._id);
-			song.save().then((err) => {
-				res.redirect(`/songs/${req.params.trackId}`);
-			});
-		} else {
-			Song.create(req.body).then((err) => {
-				res.redirect(`/songs/${req.params.trackId}`);
-			});
-		}
-	});
+	console.log(req.body);
+	Song.findOne({ trackId: req.params.trackId })
+		.then((song) => {
+			console.log(song);
+			if (song) {
+				song.ownedBy.push(req.user._id);
+				song.save()
+					.then(() => {
+						res.redirect(`/songs/${req.params.trackId}`);
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+			} else {
+				req.body.ownedBy = [req.user._id];
+				console.log(req.body);
+				Song.create(req.body)
+					.then(() => {
+						res.redirect(`/users/profile`);
+					})
+					.catch((error) => {
+						console.log(error);
+					});
+			}
+		})
+		.catch((error) => console.log(error));
 }

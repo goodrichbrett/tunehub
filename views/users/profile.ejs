@@ -15,11 +15,7 @@
 			<div class="card-body">
 				<h4 class="card-title"><%= user.name %></h4>
 				<h5 class="card-text"><%= user.message %></h5>
-				<% if (songs.reviews){ %>
-				<h5><%= songs.reviews %> Reviews</h5>
-				<% } else { %>
-				<h5>0 Reviews</h5>
-				<% } %>
+
 				<p class="card-text">
 					<small class="text-muted">Last updated 3 mins ago</small>
 				</p>
@@ -29,27 +25,25 @@
 </div>
 
 <div class="row">
-	<div class="column">
-		<% if (songs){ %> <% songs.forEach(song => { %>
-		<div class="col s12 m12 l3 xl3">
-			<div class="card large">
-				<div class="card-image">
-					<img src="<%= song.artwork %> " />
-				</div>
-				<span class="card-title"> <%= song.trackName %> </span>
-				<div class="card-content">
-					<ul>
-						<li><%= song.artistName %></li>
-						<li><%= song.collectionName %></li>
-					</ul>
-				</div>
-				<div class="card-action">
-					<a href="/songs/<%= song.trackId %>">More Details</a>
-				</div>
+	<% if (songs){ %> <% songs.forEach(song => { %>
+	<div class="col s12 m12 l6 xl3">
+		<div class="card large">
+			<div class="card-image">
+				<img src="<%= song.artwork %> " />
+			</div>
+			<span class="card-title"> <%= song.trackName %> </span>
+			<div class="card-content">
+				<ul>
+					<li><%= song.artistName %></li>
+					<li><%= song.collectionName %></li>
+				</ul>
+			</div>
+			<div class="card-action">
+				<a href="/songs/<%= song.trackId %>">More Details</a>
 			</div>
 		</div>
-		<% })} %>
 	</div>
+	<% })} %>
 </div>
 
 <%-include('../partials/footer.ejs') %>

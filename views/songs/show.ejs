@@ -62,17 +62,13 @@
 				name="ownedBy"
 				value="<%= song.results[0].ownedBy %>"
 			/>
-			<input
-				type="text"
-				hidden
-				name="reviews"
-				value="<%= song.results[0].reviews %>"
-			/>
+
 			<button type="submit">Add to Own List</button>
 		</form>
 		<h3>Average Rating</h3>
 		<p>fake 5 star icons</p>
 		<h4>Reviews</h4>
+
 		<form
 			action="/songs/<%= song.results[0].trackId %>/reviews"
 			method="POST"
@@ -93,6 +89,12 @@
 				hidden
 				name="trackId"
 				value="<%= song.results[0].trackId %>"
+			/>
+			<input
+				type="text"
+				hidden
+				name="user"
+				value="<%= song.results[0].ownedBy %>"
 			/>
 			<button id="textareaBtn" type="submit">Submit Review</button>
 		</form>

@@ -1,27 +1,28 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const reviewSchema = new Schema(
-	{
-		rating: String,
-		content: String,
-		user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-	},
-	{
-		timestamps: true,
-	}
-);
+// const reviewSchema = new Schema(
+// 	{
+// 		rating: Number,
+// 		content: String,
+// 		user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+// 	},
+// 	{
+// 		timestamps: true,
+// 	}
+// );
 
 const songSchema = new Schema(
 	{
 		trackName: String,
-		albumName: String,
+		collectionName: String,
 		artistName: String,
-		explicit: String,
+		trackExplicitness: String,
 		artwork: String,
 		ownedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 		trackId: Number,
-		reviews: [reviewSchema],
+		videoUrl: String,
+		// reviews: [reviewSchema],
 	},
 	{
 		timestamps: true,
