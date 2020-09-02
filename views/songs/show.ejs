@@ -90,12 +90,7 @@
 				name="trackId"
 				value="<%= song.results[0].trackId %>"
 			/>
-			<input
-				type="text"
-				hidden
-				name="user"
-				value="<%= song.results[0].ownedBy %>"
-			/>
+			<input type="text" hidden name="user" value="<%= user._id %>" />
 			<button id="textareaBtn" type="submit">Submit Review</button>
 		</form>
 	</div>

@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// const reviewSchema = new Schema(
-// 	{
-// 		rating: Number,
-// 		content: String,
-// 		user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-// 	},
-// 	{
-// 		timestamps: true,
-// 	}
-// );
+const reviewSchema = new Schema(
+	{
+		rating: Number,
+		content: String,
+		user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+	},
+	{
+		timestamps: true,
+	}
+);
 
 const songSchema = new Schema(
 	{
@@ -22,7 +22,7 @@ const songSchema = new Schema(
 		ownedBy: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 		trackId: Number,
 		videoUrl: String,
-		// reviews: [reviewSchema],
+		reviews: [reviewSchema],
 	},
 	{
 		timestamps: true,
