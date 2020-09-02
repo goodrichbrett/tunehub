@@ -23,7 +23,9 @@
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<% if (user) { %>
 					<li><a href="/songs/new">Add Song</a></li>
-					<li><a href="/users/profile">My Profile</a></li>
+					<li>
+						<a href="/users/<%= user._id %>/profile">My Profile</a>
+					</li>
 					<li><a href="/auth/logout">Log Out</a></li>
 					<% } else { %>
 					<a href="/auth/google">Login with Google</a>

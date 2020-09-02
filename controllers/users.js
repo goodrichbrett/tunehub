@@ -18,7 +18,7 @@ function showProfile(req, res) {
 		.then((userInfo) => {
 			Song.find({ ownedBy: userInfo._id })
 				.then((songs) => {
-					res.render('users/profile', {
+					res.render(`users/profile`, {
 						user: req.user,
 						userInfo,
 						songs,
