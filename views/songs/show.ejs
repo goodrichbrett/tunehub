@@ -1,16 +1,30 @@
 <%- include('../partials/header.ejs') %>
+<link
+	rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous"
+/>
 
 <div id="row">
 	<div id="column">
 		<img id="showImg" src="<%= song.results[0].artworkUrl100 %> " alt="" />
-		<h3><%= song.results[0].trackName %></h3>
-		<h4><%= song.results[0].collectionName %></h4>
-		<h4><%= song.results[0].artistName %></h4>
-		<h4><%= song.results[0].trackExplicitness %></h4>
-		<h5>Owned By:</h5>
-		<ul>
+		<h1><%= song.results[0].trackName %></h1>
+		<br />
+		<h2><%= song.results[0].collectionName %></h2>
+		<br />
+		<h2><%= song.results[0].artistName %></h2>
+		<br />
+		<h2><%= song.results[0].trackExplicitness.toUpperCase() %></h2>
+		<br />
+		<h3>Owned By:</h3>
+
+		<ul class="list-group list-group-flush">
 			<% ownedBy.forEach(user => { %>
-			<li><img src="<%= user.avatar %> " alt="" /> <%= user.name %></li>
+			<li class="list-group-item">
+				<img id="userAvatar" src="<%= user.avatar %> " /> <%= user.name
+				%>
+			</li>
 			<% }) %>
 		</ul>
 	</div>
@@ -65,8 +79,7 @@
 
 			<button type="submit">Add to Own List</button>
 		</form>
-		<h3>Average Rating</h3>
-		<p>fake 5 star icons</p>
+
 		<h4>Reviews</h4>
 
 		<form
@@ -93,6 +106,17 @@
 			<input type="text" hidden name="user" value="<%= user.name %>" />
 			<button id="textareaBtn" type="submit">Submit Review</button>
 		</form>
+		<% let total = 0 %>
+		<ul class="list-group list-group-flush">
+			<% reviews.forEach(review => { %>
+			<li class="list-group-item">
+				<%= review.user %> - <%= review.rating %> stars - <%=
+				review.content %>
+			</li>
+			<% total += review.rating %> <% }) %>
+		</ul>
+		<h3>Average Rating</h3>
+		<%= (total / reviews.length).toFixed(2) %>
 	</div>
 </div>
 
