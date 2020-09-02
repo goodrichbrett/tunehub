@@ -48,8 +48,9 @@ function show(req, res) {
 		.get(`https://itunes.apple.com/search?term=${req.params.trackId}`)
 		.then((response) => {
 			// console.log(response.data);
-			Song.findOne({ trackId: response.data.trackId })
+			Song.findOne({ trackId: req.params.trackId })
 				.populate('ownedBy')
+				.populate('reviews')
 				.then((song) => {
 					if (song) {
 						res.render('songs/show', {
@@ -58,7 +59,7 @@ function show(req, res) {
 							researchName: req.body.artistQuery,
 							trackId: response.data._id,
 							ownedBy: song.ownedBy,
-							// reviews: song.reviews,
+							reviews: song.reviews,
 						});
 					} else {
 						res.render('songs/show', {
@@ -68,7 +69,7 @@ function show(req, res) {
 							songId: response.data._id,
 							trackId: response.data.trackId,
 							ownedBy: [''],
-							// reviews: [''],
+							reviews: [''],
 						});
 					}
 				});
@@ -87,7 +88,7 @@ function addToOwned(req, res) {
 				song.ownedBy.push(req.user._id);
 				song.save()
 					.then(() => {
-						res.redirect(`/songs/${req.params.trackId}`);
+						res.redirect(`/users/${req.user._id}/profile`);
 					})
 					.catch((error) => {
 						console.log(error);
@@ -97,7 +98,7 @@ function addToOwned(req, res) {
 				console.log(req.body);
 				Song.create(req.body)
 					.then(() => {
-						res.redirect(`/users/profile`);
+						res.redirect(`/users/${req.user._id}/profile`);
 					})
 					.catch((error) => {
 						console.log(error);
