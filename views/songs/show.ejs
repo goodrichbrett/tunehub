@@ -5,118 +5,119 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous"
 />
-
-<div id="row">
-	<div id="column">
-		<img id="showImg" src="<%= song.results[0].artworkUrl100 %> " alt="" />
-		<h1><%= song.results[0].trackName %></h1>
-		<br />
-		<h2><%= song.results[0].collectionName %></h2>
-		<br />
-		<h2><%= song.results[0].artistName %></h2>
-		<br />
-		<h2><%= song.results[0].trackExplicitness.toUpperCase() %></h2>
-		<br />
-		<h3>Owned By:</h3>
-
-		<ul class="list-group list-group-flush">
-			<% ownedBy.forEach(user => { %>
-			<li class="list-group-item">
-				<img id="userAvatar" src="<%= user.avatar %> " /> <%= user.name
-				%>
-			</li>
-			<% }) %>
-		</ul>
-	</div>
-	<div id="column">
-		<form
-			action="/songs/<%= song.results[0].trackId %>/owned"
-			method="POST"
-		>
-			<input
-				type="text"
-				hidden
-				name="trackName"
-				value="<%= song.results[0].trackName %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="collectionName"
-				value="<%= song.results[0].collectionName %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="artistName"
-				value="<%= song.results[0].artistName %>"
-			/>
-			<input type="text" hidden name="videoUrl" value="" />
-			<input
-				type="text"
-				hidden
-				name="trackExplicitness"
-				value="<%= song.results[0].trackExplicitness %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="artwork"
-				value="<%= song.results[0].artworkUrl100 %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="trackId"
-				value="<%= song.results[0].trackId %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="ownedBy"
-				value="<%= song.results[0].ownedBy %>"
-			/>
-
-			<button type="submit">Add to Own List</button>
-		</form>
-
-		<h4>Reviews</h4>
-
-		<form
-			action="/songs/<%= song.results[0].trackId %>/reviews"
-			method="POST"
-		>
-			<textarea required name="content" cols="10"></textarea>
+<div class="container"></div>
+	<div id="row">
+		<div id="column">
+			<img id="showImg" src="<%= song.results[0].artworkUrl100 %> " alt="" />
+			<h1><%= song.results[0].trackName %></h1>
 			<br />
-			<h4>Rating</h4>
-			<input
-				id="inputBtn"
-				required
-				type="number"
-				name="rating"
-				max="5"
-				min="0"
-			/>
-			<input
-				type="text"
-				hidden
-				name="trackId"
-				value="<%= song.results[0].trackId %>"
-			/>
-			<input type="text" hidden name="user" value="<%= user.name %>" />
-			<button id="textareaBtn" type="submit">Submit Review</button>
-		</form>
-		<% let total = 0 %>
-		<ul class="list-group list-group-flush">
-			<% reviews.forEach(review => { %>
-			<li class="list-group-item">
-				<%= review.user %> - <%= review.rating %> stars - <%=
-				review.content %>
-			</li>
-			<% total += review.rating %> <% }) %>
-		</ul>
-		<h3>Average Rating</h3>
-		<%= (total / reviews.length).toFixed(2) %>
+			<h2><%= song.results[0].collectionName %></h2>
+			<br />
+			<h2><%= song.results[0].artistName %></h2>
+			<br />
+			<h2><%= song.results[0].trackExplicitness.toUpperCase() %></h2>
+			<br />
+			<h3>Owned By:</h3>
+
+			<ul class="list-group list-group-flush">
+				<% ownedBy.forEach(user => { %>
+				<li class="list-group-item">
+					<img id="userAvatar" src="<%= user.avatar %> " /> <%= user.name
+					%>
+				</li>
+				<% }) %>
+			</ul>
+		</div>
+		<div id="column">
+			<form
+				action="/songs/<%= song.results[0].trackId %>/owned"
+				method="POST"
+			>
+				<input
+					type="text"
+					hidden
+					name="trackName"
+					value="<%= song.results[0].trackName %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="collectionName"
+					value="<%= song.results[0].collectionName %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="artistName"
+					value="<%= song.results[0].artistName %>"
+				/>
+				<input type="text" hidden name="videoUrl" value="" />
+				<input
+					type="text"
+					hidden
+					name="trackExplicitness"
+					value="<%= song.results[0].trackExplicitness %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="artwork"
+					value="<%= song.results[0].artworkUrl100 %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="trackId"
+					value="<%= song.results[0].trackId %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="ownedBy"
+					value="<%= song.results[0].ownedBy %>"
+				/>
+
+				<button type="submit">Add to Own List</button>
+			</form>
+
+			<h4>Reviews</h4>
+
+			<form
+				action="/songs/<%= song.results[0].trackId %>/reviews"
+				method="POST"
+			>
+				<textarea required name="content" cols="10"></textarea>
+				<br />
+				<h4>Rating</h4>
+				<input
+					id="inputBtn"
+					required
+					type="number"
+					name="rating"
+					max="5"
+					min="0"
+				/>
+				<input
+					type="text"
+					hidden
+					name="trackId"
+					value="<%= song.results[0].trackId %>"
+				/>
+				<input type="text" hidden name="user" value="<%= user.name %>" />
+				<button id="textareaBtn" type="submit">Submit Review</button>
+			</form>
+			<% let total = 0 %>
+			<ul class="list-group list-group-flush">
+				<% reviews.forEach(review => { %>
+				<li class="list-group-item">
+					<%= review.user %> - <%= review.rating %> stars - <%=
+					review.content %>
+				</li>
+				<% total += review.rating %> <% }) %>
+			</ul>
+			<h3>Average Rating</h3>
+			<%= (total / reviews.length).toFixed(2) %>
+		</div>
 	</div>
 </div>
 
