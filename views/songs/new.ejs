@@ -23,26 +23,34 @@
 			</div>
 		</div>
 	</form>
-	<div class="row">
-		<% if (results){ %> <% results.forEach(song => { %>
-		<div class="col s12 m12 l6 xl3">
-			<div class="card large">
-				<div class="card-image">
-					<img src="<%= song.artworkUrl100 %> " />
+
+	<div class="container">
+		<div class="row">
+			<div class="column">
+				<% if (results){ %> <% results.forEach(song => { %>
+				<div class="col s12 m12 l4 xl3">
+					<div class="card large">
+						<div class="card-image">
+							<img src="<%= song.artworkUrl100 %> " />
+						</div>
+						<span class="card-title"> <%= song.trackName %> </span>
+						<div class="card-content">
+							<ul>
+								<li><%= song.artistName %></li>
+								<li><%= song.collectionName %></li>
+							</ul>
+						</div>
+						<div class="card-action">
+							<a href="/songs/<%= song.trackId %>"
+								>More Details</a
+							>
+						</div>
+					</div>
 				</div>
-				<span class="card-title"> <%= song.trackName %> </span>
-				<div class="card-content">
-					<ul>
-						<li><%= song.artistName %></li>
-						<li><%= song.collectionName %></li>
-					</ul>
-				</div>
-				<div class="card-action">
-					<a href="/songs/<%= song.trackId %>">More Details</a>
-				</div>
+				<% })} %>
 			</div>
 		</div>
-		<% })} %>
 	</div>
+
+	<%- include('../partials/footer.ejs') %>
 </div>
-<%- include('../partials/footer.ejs') %>

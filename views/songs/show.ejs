@@ -78,8 +78,8 @@
 			<ul class="list-group list-group-flush">
 				<% ownedBy.forEach(user => { %>
 				<li class="list-group-item">
-					<img id="userAvatar" src="<%= user.avatar %> " /> <%= user.name
-					%>
+					<img id="userAvatar" src="<%= user.avatar %> " /> 
+					<a href="/users/<%= user.id %>/profile"><%= user.name %></a>
 				</li>
 				<% }) %>
 			</ul>
