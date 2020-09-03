@@ -1,4 +1,4 @@
-![tunehub](./public/images/tunehub.png)
+![tunehub](./public/images/tunehubblack.png)
 
 ## Welcome to Tunehub,
 
