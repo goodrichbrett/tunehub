@@ -11,7 +11,7 @@ module.exports = {
 
 function index(req, res) {
 	Song.find({ ownedBy: req.user._id }).then((songs) => {
-		res.render('songs/index', {
+		res.render('users/index', {
 			user: req.user,
 			songs,
 		});
