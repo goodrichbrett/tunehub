@@ -24,7 +24,6 @@ function search(req, res) {
 			`https://itunes.apple.com/search?term=${req.body.artistQuery}&entity=allTrack&attribute=allTrackTerm&limit=100`
 		)
 		.then((response) => {
-			// console.log(response.data.results);
 			res.render('songs/new', {
 				user: req.user ? req.user : null,
 				results: response.data.results,
@@ -47,11 +46,11 @@ function show(req, res) {
 	axios
 		.get(`https://itunes.apple.com/search?term=${req.params.trackId}`)
 		.then((response) => {
-			// console.log(response.data);
 			Song.findOne({ trackId: req.params.trackId })
 				.populate('ownedBy')
 				.populate('reviews')
 				.then((song) => {
+					console.log(response.data);
 					if (song) {
 						res.render('songs/show', {
 							user: req.user,

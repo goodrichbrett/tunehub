@@ -23,6 +23,7 @@ const songSchema = new Schema(
 		trackId: Number,
 		videoUrl: String,
 		reviews: [reviewSchema],
+		previewUrl: String,
 	},
 	{
 		timestamps: true,

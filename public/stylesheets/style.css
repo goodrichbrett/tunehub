@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	text-decoration: none;
 }
 
 .brand-logo {
@@ -82,4 +83,8 @@ h3,
 h4,
 h5 {
 	margin: 20px 0;
+}
+
+nav .brand-logo {
+	text-decoration: none;
 }

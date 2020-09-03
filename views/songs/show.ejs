@@ -9,6 +9,10 @@
 	<div id="row">
 		<div id="column">
 			<img style="max-width: 500px;" id="showImg" src="<%= song.results[0].artworkUrl100 %> " alt="" />
+			<figure>
+				<figcaption>Song preview</figcaption>
+				<audio controls src="<%= song.results[0].previewUrl %> ">Listen</audio>
+			</figure>
 			<h1><%= song.results[0].trackName %></h1>
 			<br />
 			<h2><%= song.results[0].collectionName %></h2>
@@ -85,7 +89,6 @@
 			</ul>
 		</div>
 		<div id="column">
-
 			<h4>Reviews</h4>
 
 			<h5>Song must be added to list before leaving a review</h5>
