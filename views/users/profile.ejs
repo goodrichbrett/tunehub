@@ -5,6 +5,13 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous"
 />
+<style>
+	body {
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+	}
+</style>
 
 <div class="card mb-3" style="max-width: 1080px">
 	<div class="row no-gutters">
@@ -25,25 +32,27 @@
 </div>
 
 <div class="row">
-	<% if (songs){ %> <% songs.forEach(song => { %>
-	<div class="col s12 m12 l6 xl3">
-		<div class="card large">
-			<div class="card-image">
-				<img src="<%= song.artwork %> " />
-			</div>
-			<span class="card-title"> <%= song.trackName %> </span>
-			<div class="card-content">
-				<ul>
-					<li><%= song.artistName %></li>
-					<li><%= song.collectionName %></li>
-				</ul>
-			</div>
-			<div class="card-action">
-				<a href="/songs/<%= song.trackId %>">More Details</a>
+	<div class="column">
+		<% if (songs){ %> <% songs.forEach(song => { %>
+		<div class="col s12 m12 l6 xl3">
+			<div class="card large">
+				<div class="card-image">
+					<img src="<%= song.artwork %> " />
+				</div>
+				<span class="card-title"> <%= song.trackName %> </span>
+				<div class="card-content">
+					<ul>
+						<li><%= song.artistName %></li>
+						<li><%= song.collectionName %></li>
+					</ul>
+				</div>
+				<div class="card-action">
+					<a href="/songs/<%= song.trackId %>">More Details</a>
+				</div>
 			</div>
 		</div>
+		<% })} %>
 	</div>
-	<% })} %>
 </div>
 
 <%-include('../partials/footer.ejs') %>

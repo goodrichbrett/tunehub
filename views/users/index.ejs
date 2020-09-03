@@ -3,7 +3,7 @@
   </div>
   <ul>Registered Users:
     <% users.forEach(u => { %>
-      <li><%= u.name %></li>
+      <li><a href="/users/<%= u._id %>/profile"><%= u.name %></a></li>
     <% }) %>
   </ul>
 

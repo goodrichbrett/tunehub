@@ -8,7 +8,7 @@
 <div class="container"></div>
 	<div id="row">
 		<div id="column">
-			<img id="showImg" src="<%= song.results[0].artworkUrl100 %> " alt="" />
+			<img style="max-width: 500px;" id="showImg" src="<%= song.results[0].artworkUrl100 %> " alt="" />
 			<h1><%= song.results[0].trackName %></h1>
 			<br />
 			<h2><%= song.results[0].collectionName %></h2>
@@ -76,12 +76,19 @@
 					name="ownedBy"
 					value="<%= song.results[0].ownedBy %>"
 				/>
+				<input
+					type="text"
+					hidden
+					name="user"
+					value="<%= user._id %>"
+				/>
 
 				<button type="submit">Add to Own List</button>
 			</form>
 
 			<h4>Reviews</h4>
 
+			<h5>Song must be added to list before leaving a review</h5>
 			<form
 				action="/songs/<%= song.results[0].trackId %>/reviews"
 				method="POST"
