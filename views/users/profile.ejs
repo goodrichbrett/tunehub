@@ -33,8 +33,9 @@
 
 <div class="container">
 	<div class="row">
+		<% if (songs.length > 3) { %>
 		<div class="column">
-			<% if (songs){ %> <% songs.forEach(song => { %>
+			<% } %> <% if (songs){ %> <% songs.forEach(song => { %>
 			<div class="col s12 m6 l4 xl3">
 				<div class="card large">
 					<div class="card-image">
@@ -52,8 +53,9 @@
 					</div>
 				</div>
 			</div>
-			<% })} %>
+			<% })} %> <% if (songs.length > 3) { %>
 		</div>
+		<% } %>
 	</div>
 </div>
 
