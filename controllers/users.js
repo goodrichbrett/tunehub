@@ -8,13 +8,13 @@ module.exports = {
 
 function index(req, res) {
 	User.find({}).then((users) => {
-		res.render('songs', { user: req.user, users });
+		res.render('users/index', { user: req.user, users });
 	});
 }
 
 function showProfile(req, res) {
 	console.log('user\n' + req.user);
-	User.findById(req.user._id)
+	User.findById(req.params.id)
 		.then((userInfo) => {
 			Song.find({ ownedBy: userInfo._id })
 				.then((songs) => {

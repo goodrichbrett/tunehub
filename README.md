@@ -19,18 +19,19 @@
 -   CSS3
 -   JavaScript
 -   EJS
--   Node.js
--   Express
+-   NodeJS
+-   ExpressJS
 -   MongoDB
--   Mongoose
--   Atlas Azure Database
+-   MongooseJS
+-   MongoDB Atlas
 -   Axios
--   Passport
--   Google oAuth2
+-   PassportJS
+-   Google OAuth2
 -   iTunes Search API
--   Heroku
+-   Deployment to Heroku
 -   Bootstrap
 -   Materialize CSS
+-   Postman API Development
 
 ### Next Steps
 
