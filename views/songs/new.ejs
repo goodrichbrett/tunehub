@@ -1,41 +1,48 @@
 <%- include('../partials/header.ejs') %>
+<link
+	rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous"
+/>
 
-<h2>Find by Artist Name</h2>
-
-<form action="/songs/search" method="POST">
+<div class="container">
+	<h2>Find by Artist Name</h2>
+	<form action="/songs/search" method="POST">
+		<div class="row">
+			<div class="input-field col s6">
+				<label>Artist Name</label>
+				<input
+					type="text"
+					class="validate"
+					name="artistQuery"
+					placeholder="Artist name..."
+					required
+				/>
+				<button class="btn btn-warning" type="submit">Search</button>
+			</div>
+		</div>
+	</form>
 	<div class="row">
-		<div class="input-field col s6">
-			<label>Artist Name</label>
-			<input
-				type="text"
-				class="validate"
-				name="artistQuery"
-				placeholder="Artist name..."
-				required
-			/>
-			<button type="submit">Search</button>
-		</div>
-	</div>
-</form>
-<div class="row">
-	<% if (results){ %> <% results.forEach(song => { %>
-	<div class="col s12 m12 l6 xl3">
-		<div class="card large">
-			<div class="card-image">
-				<img src="<%= song.artworkUrl100 %> " />
-			</div>
-			<span class="card-title"> <%= song.trackName %> </span>
-			<div class="card-content">
-				<ul>
-					<li><%= song.artistName %></li>
-					<li><%= song.collectionName %></li>
-				</ul>
-			</div>
-			<div class="card-action">
-				<a href="/songs/<%= song.trackId %>">More Details</a>
+		<% if (results){ %> <% results.forEach(song => { %>
+		<div class="col s12 m12 l6 xl3">
+			<div class="card large">
+				<div class="card-image">
+					<img src="<%= song.artworkUrl100 %> " />
+				</div>
+				<span class="card-title"> <%= song.trackName %> </span>
+				<div class="card-content">
+					<ul>
+						<li><%= song.artistName %></li>
+						<li><%= song.collectionName %></li>
+					</ul>
+				</div>
+				<div class="card-action">
+					<a href="/songs/<%= song.trackId %>">More Details</a>
+				</div>
 			</div>
 		</div>
+		<% })} %>
 	</div>
-	<% })} %>
 </div>
 <%- include('../partials/footer.ejs') %>
