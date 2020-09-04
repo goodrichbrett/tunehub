@@ -35,5 +35,6 @@
 
 ### Next Steps
 
--   Delete songs from users' owned list
 -   Edit and delete a review
+-   Give the styling a makeover
+-   Allow users to be able to add other users as friends
