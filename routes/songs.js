@@ -6,6 +6,7 @@ router.post('/search', songsCtrl.search);
 router.get('/new', songsCtrl.newSong);
 router.get('/:trackId', isLoggedIn, songsCtrl.show);
 router.post('/:trackId/owned', songsCtrl.addToOwned);
+router.delete('/:trackId/owned', songsCtrl.removeFromList);
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) return next();

@@ -7,6 +7,7 @@ module.exports = {
 	newSong,
 	show,
 	addToOwned,
+	removeFromList,
 };
 
 function index(req, res) {
@@ -105,4 +106,14 @@ function addToOwned(req, res) {
 			}
 		})
 		.catch((error) => console.log(error));
+}
+
+function removeFromList(req, res) {
+	Song.findOne({ trackId: req.params.trackId }).then((song) => {
+		let i = song.ownedBy.indexOf(req.user._id);
+		song.ownedBy.splice(i, 1);
+		song.save().then(() => {
+			res.redirect(`/users/${req.user._id}/profile`);
+		});
+	});
 }

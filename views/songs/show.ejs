@@ -77,6 +77,9 @@
 
 			<button class="btn btn-warning" type="submit">Add to Own List</button>
 		</form>
+		<form action="/songs/<%= song.results[0].trackId %>/owned?_method=DELETE" method="POST">
+			<button class="btn btn-warning" type="submit">Remove from List</button>
+		</form>
 			<h3>Owned By:</h3>
 
 			<ul class="list-group list-group-flush">
