@@ -5,13 +5,21 @@
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
 	crossorigin="anonymous"
 />
-<div class="container"></div>
+<div class="container">
 	<div id="row">
 		<div id="column">
-			<img style="max-width: 500px;" id="showImg" src="<%= song.results[0].artworkUrl100 %> " alt="" />
+			<img
+				style="max-width: 500px"
+				id="showImg"
+				src="<%= song.results[0].artworkUrl100 %> "
+				alt=""
+			/>
 			<figure>
 				<figcaption>Song preview</figcaption>
-				<audio controls src="<%= song.results[0].previewUrl %> ">Listen</audio>
+				<br />
+				<audio controls src="<%= song.results[0].previewUrl %> ">
+					Listen
+				</audio>
 			</figure>
 			<h1><%= song.results[0].trackName %></h1>
 			<br />
@@ -22,71 +30,73 @@
 			<h2><%= song.results[0].trackExplicitness.toUpperCase() %></h2>
 			<br />
 			<form
-			action="/songs/<%= song.results[0].trackId %>/owned"
-			method="POST"
-		>
-			<input
-				type="text"
-				hidden
-				name="trackName"
-				value="<%= song.results[0].trackName %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="collectionName"
-				value="<%= song.results[0].collectionName %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="artistName"
-				value="<%= song.results[0].artistName %>"
-			/>
-			<input type="text" hidden name="videoUrl" value="" />
-			<input
-				type="text"
-				hidden
-				name="trackExplicitness"
-				value="<%= song.results[0].trackExplicitness %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="artwork"
-				value="<%= song.results[0].artworkUrl100 %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="trackId"
-				value="<%= song.results[0].trackId %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="ownedBy"
-				value="<%= song.results[0].ownedBy %>"
-			/>
-			<input
-				type="text"
-				hidden
-				name="user"
-				value="<%= user._id %>"
-			/>
+				action="/songs/<%= song.results[0].trackId %>/owned"
+				method="POST"
+			>
+				<input
+					type="text"
+					hidden
+					name="trackName"
+					value="<%= song.results[0].trackName %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="collectionName"
+					value="<%= song.results[0].collectionName %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="artistName"
+					value="<%= song.results[0].artistName %>"
+				/>
+				<input type="text" hidden name="videoUrl" value="" />
+				<input
+					type="text"
+					hidden
+					name="trackExplicitness"
+					value="<%= song.results[0].trackExplicitness %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="artwork"
+					value="<%= song.results[0].artworkUrl100 %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="trackId"
+					value="<%= song.results[0].trackId %>"
+				/>
+				<input
+					type="text"
+					hidden
+					name="ownedBy"
+					value="<%= song.results[0].ownedBy %>"
+				/>
+				<input type="text" hidden name="user" value="<%= user._id %>" />
 
-			<button class="btn btn-warning" type="submit">Add to Own List</button>
-		</form>
-		<br>
-		<form action="/songs/<%= song.results[0].trackId %>/owned?_method=DELETE" method="POST">
-			<button class="btn btn-warning" type="submit">Remove from List</button>
-		</form>
+				<button class="btn btn-warning" type="submit">
+					Add to Own List
+				</button>
+			</form>
+			<br />
+			<form
+				action="/songs/<%= song.results[0].trackId %>/owned?_method=DELETE"
+				method="POST"
+			>
+				<button class="btn btn-warning" type="submit">
+					Remove from List
+				</button>
+			</form>
 			<h3>Owned By:</h3>
 
 			<ul class="list-group list-group-flush">
 				<% ownedBy.forEach(user => { %>
 				<li class="list-group-item">
-					<img id="userAvatar" src="<%= user.avatar %> " /> 
+					<img id="userAvatar" src="<%= user.avatar %> " />
 					<a href="/users/<%= user.id %>/profile"><%= user.name %></a>
 				</li>
 				<% }) %>
@@ -117,8 +127,15 @@
 					name="trackId"
 					value="<%= song.results[0].trackId %>"
 				/>
-				<input type="text" hidden name="user" value="<%= user.name %>" />
-				<button class="btn btn-warning" id="textareaBtn" type="submit">Submit Review</button>
+				<input
+					type="text"
+					hidden
+					name="user"
+					value="<%= user.name %>"
+				/>
+				<button class="btn btn-warning" id="textareaBtn" type="submit">
+					Submit Review
+				</button>
 			</form>
 			<% let total = 0 %>
 			<ul class="list-group list-group-flush">
