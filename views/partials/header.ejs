@@ -11,26 +11,57 @@
 			crossorigin="anonymous"
 		/>
 		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+		<link
 			href="https://fonts.googleapis.com/icon?family=Material+Icons"
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="/stylesheets/style.css" />
 	</head>
 	<body>
-		<nav>
-			<div class="nav-wrapper">
-				<a href="/" class="brand-logo">Tunehub</a>
-				<ul id="nav-mobile" class="right hide-on-med-and-down">
+		<nav class="navbar navbar-expand-lg">
+			<a class="navbar-brand" href="/">Tunehub</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
 					<% if (user) { %>
-					<li><a href="/songs/new">Add Song</a></li>
-					<li><a href="/">Users List</a></li>
-					<li>
-						<a href="/users/<%= user._id %>/profile">My Profile</a>
+					<li class="nav-item active">
+						<a class="nav-link" href="/"
+							>Users List
+							<span class="sr-only">(current)</span></a
+						>
 					</li>
-					<li><a href="/auth/logout">Log Out</a></li>
+					<li class="nav-item">
+						<a class="nav-link" href="/songs/new">Add Song</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="users/<%= user._id %>/profile"
+							>My Profile</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/auth/logout">Log Out</a>
+					</li>
 					<% } else { %>
 					<a href="/auth/google">Login with Google</a>
 					<% } %>
 				</ul>
 			</div>
 		</nav>
+	</body>
+</html>
